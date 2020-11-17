@@ -93,6 +93,7 @@ public class HistoryDao {
     }
 
     public List<History> timKiem(int datetk) {
+        sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
         List<History> list = new ArrayList<>();
         String sql = "SELECT * FROM History WHERE idHistory LIKE '%" + datetk + "%'";
 

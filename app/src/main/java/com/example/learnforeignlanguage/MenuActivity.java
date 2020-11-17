@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.learnforeignlanguage.DAO.CustomDetailDao;
@@ -18,18 +20,26 @@ import com.example.learnforeignlanguage.mode.CustomDetail;
 import java.util.List;
 
 public class MenuActivity extends AppCompatActivity {
-
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
         AnhXa();
+        start();
+    }
+
+    private void start() {
+        String user = sharedPreferences.getString("userName","");
+        TextView tv_userName = findViewById(R.id.tv_menu_user);
+        tv_userName.setText(user);
     }
 
     //Ánh xạ các biến
     private void AnhXa() {
-
+        sharedPreferences =getSharedPreferences("phong",MODE_PRIVATE);
     }
 
 //    Ân vào phần biểu tượng người dùng
@@ -40,12 +50,8 @@ public class MenuActivity extends AppCompatActivity {
 
 //    Chức năng bài học chủ đề
     public void baiHocChuDe(View view){
-        List<CustomDetail> list;
-        CustomDetailDao customDetailDao = new CustomDetailDao(this);
-        list = customDetailDao.getAllCustomDetail();
-        for (int i=0;i<list.size();i++){
-            Toast.makeText(this,list.get(i).getIdCustomDetail()+"-"+list.get(i).getIdCustom()+"-"+list.get(i).getIdVocabulary(),Toast.LENGTH_LONG).show();
-        }
+        Intent intent = new Intent(MenuActivity.this,ThemeActivity.class);
+        startActivity(intent);
     }
 
 //    Chức năng bài học tự chọn

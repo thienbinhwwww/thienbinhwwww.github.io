@@ -1,14 +1,28 @@
 package com.example.learnforeignlanguage;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import com.example.learnforeignlanguage.mode.Theme;
+
+import java.util.List;
 
 public class AdapterTheme extends BaseAdapter {
+    List<Theme> list;
+    Context context;
+
+    public AdapterTheme(List<Theme> list, Context context) {
+        this.list = list;
+        this.context = context;
+    }
 
     @Override
     public int getCount() {
-        return 0;
+        return list.size();
     }
 
     @Override
@@ -23,6 +37,10 @@ public class AdapterTheme extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_listview_theme,viewGroup,false);
+        TextView tv_theme = view.findViewById(R.id.tv_layout_listview_theme);
+
+        tv_theme.setText(list.get(i).getTheme());
+        return view;
     }
 }

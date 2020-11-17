@@ -93,6 +93,7 @@ public class ThemeDao {
     }
 
     public List<Theme> timKiem(int datetk) {
+        sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
         List<Theme> list = new ArrayList<>();
         String sql = "SELECT * FROM Theme WHERE idTheme LIKE '%" + datetk + "%'";
 

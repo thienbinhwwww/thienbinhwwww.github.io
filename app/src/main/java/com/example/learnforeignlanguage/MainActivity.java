@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 try{
-                    Intent intent = new Intent(MainActivity.this,MenuActivity.class);
+                    Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                     startActivity(intent);
                 }catch(Exception e){
                     Log.e("Error", "Error: " + e.toString());
