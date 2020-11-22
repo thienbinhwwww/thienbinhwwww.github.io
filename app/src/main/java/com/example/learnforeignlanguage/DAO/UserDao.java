@@ -25,7 +25,6 @@ public class UserDao {
         sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
         // ghép cặp giá trị vào tên cột 2
         ContentValues contentValues = new ContentValues();
-        contentValues.put("idUser",user.getIdUser());
         contentValues.put("Email",user.getEmail());
         contentValues.put("PhoneNumber",user.getPhoneNumber());
         contentValues.put("UserName",user.getUserName());

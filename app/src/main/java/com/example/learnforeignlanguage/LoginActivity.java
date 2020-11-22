@@ -44,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
              Toast.makeText(this,"Tài khoản không tồn tại",Toast.LENGTH_LONG).show();
          }else {
                 if(list.get(0).getPassword().equals(edt_pass.getText().toString())){
-
                     editor.clear();
                     editor.putString("userName", edt_userName.getText().toString());
                     editor.putString("password", edt_pass.getText().toString());
@@ -56,5 +55,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
          }
+    }
+    public void signUp(View view){
+        Intent intent = new Intent(this,SignUpActivity.class);
+        startActivity(intent);
     }
 }

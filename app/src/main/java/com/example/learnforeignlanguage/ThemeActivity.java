@@ -3,6 +3,7 @@ package com.example.learnforeignlanguage;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import com.example.learnforeignlanguage.DAO.ThemeDao;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ThemeActivity extends AppCompatActivity {
-    ListView lv;
+    GridView gridView;
     List<Theme> listTheme = new ArrayList<>();
     ThemeDao themeDao;
 
@@ -29,11 +30,11 @@ public class ThemeActivity extends AppCompatActivity {
 
 
         AdapterTheme adapterTheme = new AdapterTheme(listTheme,this);
-        lv.setAdapter(adapterTheme);
+        gridView.setAdapter(adapterTheme);
 
     }
 
     private void anhXa() {
-        lv= findViewById(R.id.listView_theme);
+        gridView= findViewById(R.id.gridView_theme);
     }
 }

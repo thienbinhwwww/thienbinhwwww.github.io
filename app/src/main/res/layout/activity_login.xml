@@ -79,6 +79,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/bo"
+        android:onClick="signUp"
         android:text="Đăng ký"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button"
@@ -100,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="V 0.1"
+        android:text="V 1.1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
