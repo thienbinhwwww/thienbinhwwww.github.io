@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".SelectGameActivity"></activity>
+        <activity android:name=".ElectiveActivity"></activity>
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".GameIIActivity" />
+        <activity android:name=".GameIActivity" />
+        <activity android:name=".SelectGameActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ListGameActivity" />
         <activity android:name=".ThemeActivity" />

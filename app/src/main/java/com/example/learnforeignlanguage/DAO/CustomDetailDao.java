@@ -96,7 +96,7 @@ public class CustomDetailDao {
     public List<CustomDetail> timKiem(int datetk) {
         sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
         List<CustomDetail> list = new ArrayList<>();
-        String sql = "SELECT * FROM CustomDetail WHERE idCustomDetail LIKE '%" + datetk + "%'";
+        String sql = "SELECT * FROM CustomDetail WHERE idCustom LIKE '%" + datetk + "%'";
 
         Cursor cursor = sqLiteDatabase.rawQuery(sql,null);
         list.clear();

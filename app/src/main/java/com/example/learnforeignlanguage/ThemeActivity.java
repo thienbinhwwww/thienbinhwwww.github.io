@@ -2,7 +2,11 @@ package com.example.learnforeignlanguage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 
@@ -16,6 +20,8 @@ public class ThemeActivity extends AppCompatActivity {
     GridView gridView;
     List<Theme> listTheme = new ArrayList<>();
     ThemeDao themeDao;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,18 +29,36 @@ public class ThemeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_theme);
 
         anhXa();
+        start();
 
-        themeDao = new ThemeDao(this);
 
+
+    }
+
+    private void start() {
         listTheme = themeDao.getAllTheme();
-
-
         AdapterTheme adapterTheme = new AdapterTheme(listTheme,this);
         gridView.setAdapter(adapterTheme);
 
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                editor.clear();
+                editor.putInt("idCustom", listTheme.get(i).getIdCustom());
+                editor.commit();
+
+                finish();
+                Intent intent = new Intent(ThemeActivity.this,ListGameActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void anhXa() {
         gridView= findViewById(R.id.gridView_theme);
+        themeDao = new ThemeDao(this);
+        sharedPreferences = getSharedPreferences("phong",MODE_PRIVATE);
+        editor = sharedPreferences.edit();
     }
 }
