@@ -3,15 +3,16 @@ package com.example.learnforeignlanguage;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.content.Intent;
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.learnforeignlanguage.DAO.CustomDetailDao;
-import com.example.learnforeignlanguage.DAO.VocabularyDao;
+import com.example.learnforeignlanguage.dao.CustomDetailDao;
+import com.example.learnforeignlanguage.dao.VocabularyDao;
 import com.example.learnforeignlanguage.mode.CustomDetail;
 import com.example.learnforeignlanguage.mode.Vocabulary;
 
@@ -31,6 +32,8 @@ public class GameIActivity extends AppCompatActivity {
     int poit=0;
     int temp=0;
     Random random = new Random();
+    Dialog dialogD;
+    TextView tv_d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,17 +51,32 @@ public class GameIActivity extends AppCompatActivity {
         for (int i=0;i<listCustomDetail.size();i++){
             listVocabulary.add(vocabularyDao.timKiem(listCustomDetail.get(i).getIdVocabulary()).get(0));
         }
-        for (int i=0;i<listVocabulary.size();i++){
-            listMeans.add(listVocabulary.get(i).getMeans());
-        }
         createGame();
     }
 
     private void createGame() {
+        listMeans.clear();
+        for (int i=0;i<listVocabulary.size();i++){
+            listMeans.add(listVocabulary.get(i).getMeans());
+        }
         if(temp>=10){
-            Toast.makeText(GameIActivity.this,String.valueOf(poit),Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(GameIActivity.this,MenuActivity.class);
-            startActivity(intent);
+
+            Dialog dialog = new Dialog(GameIActivity.this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.layout_dialog_kq);
+            TextView tv_poit = dialog.findViewById(R.id.tv_dialog_kq);
+            tv_poit.setText(String.valueOf(poit));
+            Button button = dialog.findViewById(R.id.btn_dialg_ok);
+            dialog.show();
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    finish();
+                }
+            });
+
         }else {
             if (ramdom(temp)) {
                 layout_tich.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +84,8 @@ public class GameIActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         poit++;
                         temp++;
+                        tv_d.setText("Bạn trả lời đúng");
+                        dialogD.show();
                         createGame();
                     }
                 });
@@ -74,6 +94,8 @@ public class GameIActivity extends AppCompatActivity {
                     public void onClick(View view) {
 
                         temp++;
+                        tv_d.setText("Bạn trả sai rồi");
+                        dialogD.show();
                         createGame();
                     }
                 });
@@ -84,6 +106,8 @@ public class GameIActivity extends AppCompatActivity {
                     public void onClick(View view) {
 
                         temp++;
+                        tv_d.setText("Bạn trả sai rồi");
+                        dialogD.show();
                         createGame();
                     }
                 });
@@ -93,6 +117,8 @@ public class GameIActivity extends AppCompatActivity {
 
                         poit++;
                         temp++;
+                        tv_d.setText("Bạn trả lời đúng");
+                        dialogD.show();
                         createGame();
                     }
                 });
@@ -110,6 +136,11 @@ public class GameIActivity extends AppCompatActivity {
             tv_Means.setText(listVocabulary.get(id).getMeans());
             return true;
         } else {
+            for (int j=0;j<listMeans.size();j++){
+                if(listMeans.get(j).equals(listVocabulary.get(id).getMeans())){
+                    listMeans.remove(j);
+                }
+            }
             int ii = random.nextInt(listMeans.size());
             tv_Vocabulary.setText(listVocabulary.get(id).getVocabulary());
             tv_Means.setText(listMeans.get(ii));
@@ -129,6 +160,10 @@ public class GameIActivity extends AppCompatActivity {
         listCustomDetail = new ArrayList<>();
         listVocabulary = new ArrayList<>();
         sharedPreferences =getSharedPreferences("phong",MODE_PRIVATE);
+        dialogD = new Dialog(this);
+        dialogD.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogD.setContentView(R.layout.layout_dialog_d);
+        tv_d=dialogD.findViewById(R.id.tv_dialog_d);
     }
 
 

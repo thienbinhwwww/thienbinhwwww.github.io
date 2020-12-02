@@ -1,14 +1,11 @@
-package com.example.learnforeignlanguage.DAO;
+package com.example.learnforeignlanguage.dao;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.app.Activity;
-import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.learnforeignlanguage.Database.Database;
-import com.example.learnforeignlanguage.Database.Sqlite;
+import com.example.learnforeignlanguage.database.Database;
 import com.example.learnforeignlanguage.mode.Custom;
 
 import java.util.ArrayList;
@@ -27,7 +24,7 @@ public class CustomDao {
         sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
         // ghép cặp giá trị vào tên cột 2
         ContentValues contentValues = new ContentValues();
-        contentValues.put("idCustom",custom.getIdCustom());
+        contentValues.put("idCustom", (byte[]) null);
 
         long kq = sqLiteDatabase.insert("Custom", null, contentValues);
 

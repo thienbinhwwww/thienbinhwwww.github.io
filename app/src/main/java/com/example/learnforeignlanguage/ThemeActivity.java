@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
 
-import com.example.learnforeignlanguage.DAO.ThemeDao;
+import com.example.learnforeignlanguage.adapter.AdapterTheme;
+import com.example.learnforeignlanguage.dao.ThemeDao;
 import com.example.learnforeignlanguage.mode.Theme;
 
 import java.util.ArrayList;

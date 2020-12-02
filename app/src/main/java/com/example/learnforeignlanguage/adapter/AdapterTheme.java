@@ -1,4 +1,4 @@
-package com.example.learnforeignlanguage;
+package com.example.learnforeignlanguage.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.learnforeignlanguage.R;
 import com.example.learnforeignlanguage.mode.Theme;
 
 import java.util.List;

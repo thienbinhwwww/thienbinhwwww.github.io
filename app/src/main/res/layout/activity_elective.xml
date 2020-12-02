@@ -8,7 +8,7 @@
     tools:context=".ElectiveActivity">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/edt_add"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -16,16 +16,16 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/bacground_layot_listview_theme"
         android:ems="10"
+        android:hint="Từ mới"
         android:inputType="textPersonName"
         android:padding="10dp"
-        android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+        app:layout_constraintBottom_toTopOf="@+id/edt_add_m"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/edt_add_m"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -33,13 +33,13 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/bacground_layot_listview_theme"
         android:ems="10"
+        android:hint="Nghĩa"
         android:inputType="textPersonName"
         android:padding="10dp"
-        android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/button6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_add" />
 
     <Button
         android:id="@+id/button6"
@@ -49,10 +49,11 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/bo"
+        android:onClick="add"
         android:text="Thêm"
         app:layout_constraintEnd_toStartOf="@+id/button7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_add_m" />
 
     <Button
         android:id="@+id/button7"
@@ -61,12 +62,14 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/bo"
+        android:onClick="strat"
         android:text="Bắt đầu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_add_m" />
 
     <GridView
+        android:id="@+id/gridView_newVocalody"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"

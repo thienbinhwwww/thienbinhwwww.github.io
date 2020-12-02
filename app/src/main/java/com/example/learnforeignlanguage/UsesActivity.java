@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.learnforeignlanguage.DAO.UserDao;
+import com.example.learnforeignlanguage.dao.UserDao;
 import com.example.learnforeignlanguage.mode.User;
 
 import java.util.ArrayList;

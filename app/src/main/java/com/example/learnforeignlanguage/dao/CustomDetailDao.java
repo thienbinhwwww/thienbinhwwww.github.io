@@ -1,12 +1,11 @@
-package com.example.learnforeignlanguage.DAO;
+package com.example.learnforeignlanguage.dao;
 
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.learnforeignlanguage.Database.Database;
-import com.example.learnforeignlanguage.Database.Sqlite;
+import com.example.learnforeignlanguage.database.Database;
 
 import com.example.learnforeignlanguage.mode.CustomDetail;
 
@@ -26,7 +25,6 @@ public class CustomDetailDao {
         sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
         // ghép cặp giá trị vào tên cột 2
         ContentValues contentValues = new ContentValues();
-        contentValues.put("idCustomDetail",customDetail.getIdCustomDetail());
         contentValues.put("idCustom",customDetail.getIdCustom());
         contentValues.put("idVocabulary",customDetail.getIdVocabulary());
 
@@ -96,7 +94,7 @@ public class CustomDetailDao {
     public List<CustomDetail> timKiem(int datetk) {
         sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
         List<CustomDetail> list = new ArrayList<>();
-        String sql = "SELECT * FROM CustomDetail WHERE idCustom LIKE '%" + datetk + "%'";
+        String sql = "SELECT * FROM CustomDetail WHERE idCustom LIKE '" + datetk + "'";
 
         Cursor cursor = sqLiteDatabase.rawQuery(sql,null);
         list.clear();

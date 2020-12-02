@@ -1,35 +1,34 @@
-package com.example.learnforeignlanguage.DAO;
+package com.example.learnforeignlanguage.dao;
 
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.learnforeignlanguage.Database.Database;
-import com.example.learnforeignlanguage.mode.History;
+import com.example.learnforeignlanguage.database.Database;
+import com.example.learnforeignlanguage.mode.Theme;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistoryDao {
+public class ThemeDao {
     final String DATABASE_NAME = "dataLearnForeignLanguage.sqlite";
     SQLiteDatabase sqLiteDatabase;
     Activity context;
 
-    public HistoryDao(Activity context) {
+    public ThemeDao(Activity context) {
         this.context = context;
     }
 
-    public boolean addHistory(History history){
+    public boolean addTheme(Theme theme){
         sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
         // ghép cặp giá trị vào tên cột 2
         ContentValues contentValues = new ContentValues();
-        contentValues.put("idHistory",history.getIdHistory());
-        contentValues.put("idCustom",history.getIdCustom());
-        contentValues.put("idUser",history.getIdUser());
+        contentValues.put("idCustom",theme.getIdCustom());
+        contentValues.put("theme",theme.getTheme());
 
-        long kq = sqLiteDatabase.insert("History", null, contentValues);
+        long kq = sqLiteDatabase.insert("Theme", null, contentValues);
 
         if (kq > 0){
             return true;
@@ -38,15 +37,16 @@ public class HistoryDao {
         }
     }
 
-    public boolean updateHistory(History history){
+
+    public boolean updateTheme(Theme theme){
         sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
         // ghép cặp giá trị vào tên cột 2
         ContentValues contentValues = new ContentValues();
-        contentValues.put("idHistory",history.getIdHistory());
-        contentValues.put("idCustom",history.getIdCustom());
-        contentValues.put("idUser",history.getIdUser());
+        contentValues.put("idTheme",theme.getTheme());
+        contentValues.put("idCustom",theme.getIdCustom());
+        contentValues.put("theme",theme.getTheme());
         // truy vấn 3
-        long kq = sqLiteDatabase.update("History", contentValues, "idHistory ="+new int[]{history.getIdHistory()},null);
+        long kq = sqLiteDatabase.update("Theme", contentValues, "idTheme ="+new int[]{theme.getIdTheme()},null);
 
         if (kq > 0){
             return true;
@@ -55,10 +55,10 @@ public class HistoryDao {
         }
     }
 
-    public boolean deleteHistory(int id) {
+    public boolean deleteTheme(int id) {
         sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
         // truy vấn 3
-        long kq = sqLiteDatabase.delete("History", "idHistory =" + new int[]{id}, null);
+        long kq = sqLiteDatabase.delete("Theme", "idTheme =" + new int[]{id}, null);
 
         if (kq > 0) {
             return true;
@@ -67,51 +67,51 @@ public class HistoryDao {
         }
     }
 
-    public List<History> getAllHistory(){
+    public List<Theme> getAllTheme(){
         sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
-        List<History> list = new ArrayList<>();
-        String sql = "SELECT * FROM History";
+        List<Theme> list = new ArrayList<>();
+        String sql = "SELECT * FROM Theme";
         Cursor cursor = sqLiteDatabase.rawQuery(sql,null);
         list.clear();
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                int IDHistory = cursor.getInt(0);
+                int IDTheme = cursor.getInt(0);
                 int IDCustom = cursor.getInt(1);
-                int IDUser = cursor.getInt(2);
+                String themes = cursor.getString(2);
 
-                History history = new History();
-                history.setIdHistory(IDHistory);
-                history.setIdCustom(IDCustom);
-                history.setIdUser(IDUser);
+                Theme theme = new Theme();
+                theme.setIdTheme(IDTheme);
+                theme.setIdCustom(IDCustom);
+                theme.setTheme(themes);
 
-                list.add(history);
+                list.add(theme);
                 cursor.moveToNext();
             }
         }
         return list;
     }
 
-    public List<History> timKiem(int datetk) {
+    public List<Theme> timKiem(int datetk) {
         sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
-        List<History> list = new ArrayList<>();
-        String sql = "SELECT * FROM History WHERE idHistory LIKE '%" + datetk + "%'";
+        List<Theme> list = new ArrayList<>();
+        String sql = "SELECT * FROM Theme WHERE idTheme LIKE '%" + datetk + "%'";
 
         Cursor cursor = sqLiteDatabase.rawQuery(sql,null);
         list.clear();
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                int IDHistory = cursor.getInt(0);
+                int IDTheme = cursor.getInt(0);
                 int IDCustom = cursor.getInt(1);
-                int IDUser = cursor.getInt(2);
+                String themes = cursor.getString(2);
 
-                History history = new History();
-                history.setIdHistory(IDHistory);
-                history.setIdCustom(IDCustom);
-                history.setIdUser(IDUser);
+                Theme theme = new Theme();
+                theme.setIdTheme(IDTheme);
+                theme.setIdCustom(IDCustom);
+                theme.setTheme(themes);
 
-                list.add(history);
+                list.add(theme);
                 cursor.moveToNext();
             }
         }

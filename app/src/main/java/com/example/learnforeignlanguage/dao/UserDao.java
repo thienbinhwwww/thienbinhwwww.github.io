@@ -1,11 +1,11 @@
-package com.example.learnforeignlanguage.DAO;
+package com.example.learnforeignlanguage.dao;
 
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.learnforeignlanguage.Database.Database;
+import com.example.learnforeignlanguage.database.Database;
 import com.example.learnforeignlanguage.mode.User;
 
 

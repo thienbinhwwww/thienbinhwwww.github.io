@@ -1,4 +1,4 @@
-package com.example.learnforeignlanguage.Database;
+package com.example.learnforeignlanguage.database;
 
 import android.content.Context;
 import android.database.Cursor;

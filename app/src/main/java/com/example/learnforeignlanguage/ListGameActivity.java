@@ -27,6 +27,8 @@ public class ListGameActivity extends AppCompatActivity {
     }
 
     public void gameIII(View view){
-
+        finish();
+        Intent intent = new Intent(ListGameActivity.this,ListVocabularyActivity.class);
+        startActivity(intent);
     }
 }

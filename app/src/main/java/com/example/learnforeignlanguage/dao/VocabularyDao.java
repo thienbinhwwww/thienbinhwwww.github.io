@@ -1,11 +1,11 @@
-package com.example.learnforeignlanguage.DAO;
+package com.example.learnforeignlanguage.dao;
 
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.learnforeignlanguage.Database.Database;
+import com.example.learnforeignlanguage.database.Database;
 import com.example.learnforeignlanguage.mode.Vocabulary;
 
 
@@ -25,10 +25,8 @@ public class VocabularyDao {
         sqLiteDatabase = Database.initDatabase(context,DATABASE_NAME);
         // ghép cặp giá trị vào tên cột 2
         ContentValues contentValues = new ContentValues();
-        contentValues.put("LdCustomDetail",vocabulary.getIdVocabulary());
         contentValues.put("Vocabulary",vocabulary.getVocabulary());
         contentValues.put("Means",vocabulary.getMeans());
-        contentValues.put("Pronoune",vocabulary.getPronounce());
 
         long kq = sqLiteDatabase.insert("Vocabulary", null, contentValues);
 
