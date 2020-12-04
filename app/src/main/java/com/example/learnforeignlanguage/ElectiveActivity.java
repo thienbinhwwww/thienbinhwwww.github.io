@@ -64,19 +64,21 @@ public class ElectiveActivity extends AppCompatActivity {
         c1 = true;
         sharedPreferences = getSharedPreferences("phong",MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        idCustom=0;
         gridViewVocabulary=findViewById(R.id.gridView_newVocalody);
     }
 
     public void add(View view){
+        idCustom=1;
         if(c1) {
             c1 = false;
             listCustom = customDao.getAllCustom();
+            boolean ch;
             while (true){
-                boolean ch = true;
+                ch = true;
                 for (int i=0;i < (listCustom.size());i++){
                     if(listCustom.get(i).getIdCustom()==idCustom){
                         ch = false;
+                        break;
                     }
                 }
                 if(ch){
@@ -149,11 +151,9 @@ public class ElectiveActivity extends AppCompatActivity {
 
     public void addAdapter(int id){
         listVocabulary.clear();
+        listCustomDetail = customDetailDao.timKiem(idCustom);
         for (int i=0;i<listCustomDetail.size();i++){
-            if(listCustomDetail.get(i).getIdCustom()==id) {
-                List<Vocabulary> list = vocabularyDao.timKiem(listCustomDetail.get(i).getIdVocabulary());
-                listVocabulary.add(list.get(0));
-            }
+            listVocabulary.add(vocabularyDao.timKiem(listCustomDetail.get(i).getIdVocabulary()).get(0));
         }
         AdapterVocabulary adapterVocabulary = new AdapterVocabulary(listVocabulary,this);
         gridViewVocabulary.setAdapter(adapterVocabulary);
